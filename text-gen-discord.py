@@ -25,7 +25,7 @@ async def on_message(message):
 
     if message.content[0:4] == "gen " and len(message.content) < 204:
         await message.channel.send("Generating...")
-        sequence = (message.content[3:len(message.content)])
+        sequence = (message.content[4:len(message.content)])
         inputs = tokenizer.encode(sequence, return_tensors='pt')
         outputs = model.generate(inputs, max_length=199, do_sample=True, temperature=1, top_k=50, pad_token_id=0)
         text = tokenizer.decode(outputs[0], skip_special_tokens=True)
